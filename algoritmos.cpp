@@ -194,7 +194,11 @@ void deleteNodebyValue(Node** head, int iValue)
 
 void swapValues(Node* node1, Node* node2)
 {
-    if (node1 != nullptr && node2 != nullptr && node1->iPayload != node2->iPayload)
+    if (node1->iPayload == node2->iPayload)
+    {
+        return;
+    }
+    else if (node1 != nullptr && node2 !=nullptr)
     {
         int iTemp = node1->iPayload;
 
@@ -203,7 +207,7 @@ void swapValues(Node* node1, Node* node2)
     }
     else
     {
-        cout << "Operação inválida, verifique os nós inseridos" << endl;
+        cout << "Operação inválida, verifique os nós inseridos." << endl;
     }
 
     return;
