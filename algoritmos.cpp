@@ -21,6 +21,8 @@ void insertBefore(Node*, int);
 void deleteNodebyValue(Node**, int);
 Node* searchNodebyValue(Node**, int);
 
+void swapValues(Node*, Node*);
+
 int main(){
     Node* head = nullptr;
     // displayList(head);
@@ -190,3 +192,19 @@ void deleteNodebyValue(Node** head, int iValue)
     return;
 }
 
+void swapValues(Node* node1, Node* node2)
+{
+    if (node1 != nullptr && node2 != nullptr && node1->iPayload != node2->iPayload)
+    {
+        int iTemp = node1->iPayload;
+
+        node1->iPayload = node2->iPayload;
+        node2->iPayload = iTemp;
+    }
+    else
+    {
+        cout << "Operação inválida, verifique os nós inseridos" << endl;
+    }
+
+    return;
+}
