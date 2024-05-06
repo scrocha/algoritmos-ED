@@ -23,21 +23,14 @@ Node* searchNodebyValue(Node**, int);
 void bubbleSort(Node*, int);
 void bubbleSortOtimizado(Node*, int);
 void swapValues(Node*, Node*);
+void selectionSort(Node*);
+void selectionSortOtimizado(Node*);
 
 int main(){
     Node* head = nullptr;
     // displayList(head);
     // cout << "=================================" << endl;
-    Node* PreviousNode = nullptr;
-    Node* TempNode = nullptr;
-    for (int i = 0; i < 10; i++)
-    {
-        PreviousNode = TempNode;
-        TempNode = createNode(10 - i);
-        PreviousNode->ptrNext = TempNode;
-        TempNode->ptrPrev = PreviousNode;
-    }
-
+    
     return 0;
 }
 
@@ -226,31 +219,31 @@ void swapValues(Node* node1, Node* node2)
 void bubbleSort(Node* ptrFirstNode, int iNumNode)
 {   
     // Inicializa um ponteiro temporário para percorrer a lista
-    Node* TempNode = ptrFirstNode;
+    Node* tempNode = ptrFirstNode;
 
     // Percorre a lista 'iNumNode - 1' vezes, onde 'iNumNode' é o número de elementos na lista
     for (int i = 1; i < iNumNode; i++)
     {   
         // Enquanto não chegarmos ao final da lista
-        while (TempNode->ptrNext != nullptr)
+        while (tempNode->ptrNext != nullptr)
         {   
             // Se o elemento atual for maior que o próximo, troca suas posições
-            if (TempNode->iPayload > TempNode->ptrNext->iPayload)
+            if (tempNode->iPayload > tempNode->ptrNext->iPayload)
             {
-                swapValues(TempNode, TempNode->ptrNext);
+                swapValues(tempNode, tempNode->ptrNext);
             }
             // Move para o próximo elemento na lista
-            TempNode = TempNode->ptrNext;
+            tempNode = tempNode->ptrNext;
         }
         // Reinicia o ponteiro temporário de volta para o primeiro elemento da lista
-        TempNode = ptrFirstNode;
+        tempNode = ptrFirstNode;
     }
 }
 
 void bubbleSortOtimizado(Node* ptrFirstNode, int iNumNode)
 {   
     // Inicializa um ponteiro temporário para percorrer a lista
-    Node* TempNode = ptrFirstNode;
+    Node* tempNode = ptrFirstNode;
     // Variável para indicar se a lista está desordenada
     bool bDesordenado = false;
 
@@ -264,20 +257,78 @@ void bubbleSortOtimizado(Node* ptrFirstNode, int iNumNode)
         for (int j = 1; j < iNumNode - i + 1 ; j++)
         {   
             // Se um elemento for maior que o próximo, troca suas posições
-            if (TempNode->iPayload > TempNode->ptrNext->iPayload)
+            if (tempNode->iPayload > tempNode->ptrNext->iPayload)
             {
-                swapValues(TempNode, TempNode->ptrNext);
+                swapValues(tempNode, tempNode->ptrNext);
                 // Atualiza a flag para indicar que a lista está desordenada
                 bDesordenado = true;
             }
 
             // Move para o próximo elemento na lista
-            TempNode = TempNode->ptrNext;
+            tempNode = tempNode->ptrNext;
         }
         // Reinicia o ponteiro temporário de volta para o primeiro elemento da lista
-        TempNode = ptrFirstNode;
+        tempNode = ptrFirstNode;
 
         // Se percorreu a lista e não fez nenhuma troca, interrompe a iteração
         if (!bDesordenado) break;
     }
+}
+
+void selectionSort(Node* ptrFirstNode)
+{
+    // Inicializa o ponteiro para o nó inicial a ser comparado
+    Node* current = ptrFirstNode;
+    // Loop para comparar todos os nós até chegar ao final
+    while (current != nullptr)
+    {
+        // Ponteiro temporário para a comparação com os elementos adjascentes da lista
+        Node* tempNode = current->ptrNext;
+        // Percorre os valores adjascentes da lista
+        while (tempNode != nullptr)
+        {
+            // Compara se houve algum valor menor
+            if (tempNode->iPayload < current->iPayload)
+            {
+                //  Troca os valores caso haja algum menor
+                swapValues(current, tempNode);
+            }
+            // Atualiza o ponteiro temporário
+            tempNode = tempNode->ptrNext;
+        }
+        // Atualiza o ponteiro a ser comparado
+        current = current->ptrNext;
+    }
+
+}
+
+void selectionSortOtimizado(Node* ptrFirstNode)
+{
+    // Inicializa o ponteiro para o nó inicial a ser comparado
+    Node* current = ptrFirstNode;
+    // Loop para comparar todos os nós até chegar ao final, mas agora sem chegar ao
+    // último nó, pois ele não possui ponteiros adjascentes então não precisa ser comparado
+    while (current->ptrNext != nullptr)
+    {
+        // Ponteiro com o menor valor até o momento
+        Node* minNode = current;
+        // Ponteiro temporário para a comparação com os elementos adjascentes da lista
+        Node* tempNode = current->ptrNext;
+        // Percorre os valores adjascentes da lista
+        while (tempNode != nullptr)
+        {
+            // Se o valor comparado for menor que o menor valor atual então atualiza o menor valor
+            if (tempNode->iPayload < minNode->iPayload)
+            {
+                minNode = tempNode;
+            }
+            // Atualiza o ponteiro temporário
+            tempNode = tempNode->ptrNext;
+        }
+        // Realiza apenas a troca do ponteiro atual com o menor dos ponteiros adjascentes
+        swapValues(current, minNode);
+        // Atualiza o ponteiro atual para dar seguimento ao loop
+        current = current->ptrNext;
+    }
+
 }
