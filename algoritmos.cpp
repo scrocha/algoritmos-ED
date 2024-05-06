@@ -28,6 +28,15 @@ int main(){
     Node* head = nullptr;
     // displayList(head);
     // cout << "=================================" << endl;
+    Node* PreviousNode = nullptr;
+    Node* TempNode = nullptr;
+    for (int i = 0; i < 10; i++)
+    {
+        PreviousNode = TempNode;
+        TempNode = createNode(10 - i);
+        PreviousNode->ptrNext = TempNode;
+        TempNode->ptrPrev = PreviousNode;
+    }
 
     return 0;
 }
@@ -252,7 +261,7 @@ void bubbleSortOtimizado(Node* ptrFirstNode, int iNumNode)
         bDesordenado = false;
 
         // Percorre a lista, diminuindo o número de comparações a cada iteração
-        for (int j = 1; j < iNumNode - i; j++)
+        for (int j = 1; j < iNumNode - i + 1 ; j++)
         {   
             // Se um elemento for maior que o próximo, troca suas posições
             if (TempNode->iPayload > TempNode->ptrNext->iPayload)
