@@ -20,7 +20,8 @@ void displayList(Node*);
 void insertBefore(Node*, int);
 void deleteNodebyValue(Node**, int);
 Node* searchNodebyValue(Node**, int);
-
+void bubbleSort(Node*, int);
+void bubbleSortOtimizado(Node*, int);
 void swapValues(Node*, Node*);
 
 int main(){
@@ -211,4 +212,63 @@ void swapValues(Node* node1, Node* node2)
     }
 
     return;
+}
+
+void bubbleSort(Node* ptrFirstNode, int iNumNode)
+{   
+    // Inicializa um ponteiro temporário para percorrer a lista
+    Node* TempNode = ptrFirstNode;
+
+    // Percorre a lista 'iNumNode - 1' vezes, onde 'iNumNode' é o número de elementos na lista
+    for (int i = 1; i < iNumNode; i++)
+    {   
+        // Enquanto não chegarmos ao final da lista
+        while (TempNode->ptrNext != nullptr)
+        {   
+            // Se o elemento atual for maior que o próximo, troca suas posições
+            if (TempNode->iPayload > TempNode->ptrNext->iPayload)
+            {
+                swapValues(TempNode, TempNode->ptrNext);
+            }
+            // Move para o próximo elemento na lista
+            TempNode = TempNode->ptrNext;
+        }
+        // Reinicia o ponteiro temporário de volta para o primeiro elemento da lista
+        TempNode = ptrFirstNode;
+    }
+}
+
+void bubbleSortOtimizado(Node* ptrFirstNode, int iNumNode)
+{   
+    // Inicializa um ponteiro temporário para percorrer a lista
+    Node* TempNode = ptrFirstNode;
+    // Variável para indicar se a lista está desordenada
+    bool bDesordenado = false;
+
+    // Percorre a lista 'iNumNode - 1' vezes, onde 'iNumNode' é o número de elementos na lista
+    for (int i = 1; i < iNumNode; i++)
+    {   
+        // Inicializa a flag de desordem como falso
+        bDesordenado = false;
+
+        // Percorre a lista, diminuindo o número de comparações a cada iteração
+        for (int j = 1; j < iNumNode - i; j++)
+        {   
+            // Se um elemento for maior que o próximo, troca suas posições
+            if (TempNode->iPayload > TempNode->ptrNext->iPayload)
+            {
+                swapValues(TempNode, TempNode->ptrNext);
+                // Atualiza a flag para indicar que a lista está desordenada
+                bDesordenado = true;
+            }
+
+            // Move para o próximo elemento na lista
+            TempNode = TempNode->ptrNext;
+        }
+        // Reinicia o ponteiro temporário de volta para o primeiro elemento da lista
+        TempNode = ptrFirstNode;
+
+        // Se percorreu a lista e não fez nenhuma troca, interrompe a iteração
+        if (!bDesordenado) break;
+    }
 }
