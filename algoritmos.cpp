@@ -11,6 +11,7 @@ typedef struct Node{
     Node* ptrPrev;
 } Node;
 
+// Funções referentes a fila duplamente encadeada
 Node* createNode(int);
 void insertFront(Node**, int);
 void insertEnd(Node**, int);
@@ -20,9 +21,15 @@ void displayList(Node*);
 void insertBefore(Node*, int);
 void deleteNodebyValue(Node**, int);
 Node* searchNodebyValue(Node**, int);
+void clearList(Node**);
+// Funções de auxílio para os algoritmos
+void swapValues(Node*, Node*);
+Node* geradorFila(unsigned int, bool=true);
+Node* geradorFilaDesordenada(unsigned int);
+
+// Algoritmos
 void bubbleSort(Node*, int);
 void bubbleSortOtimizado(Node*, int);
-void swapValues(Node*, Node*);
 void selectionSort(Node*);
 void selectionSortOtimizado(Node*);
 
@@ -30,7 +37,7 @@ int main(){
     Node* head = nullptr;
     // displayList(head);
     // cout << "=================================" << endl;
-    
+
     return 0;
 }
 
@@ -193,6 +200,31 @@ void deleteNodebyValue(Node** head, int iValue)
     // Por fim, deleta o nó
     deleteNode(head, selected); // Aqui usamos a função já implementada deleteNode
     return;
+}
+
+void clearList(Node** head)
+{
+    Node* current = *head;
+    Node* next = current->ptrNext;
+
+    while (current != nullptr)
+    {
+        free(current);
+        current = next;
+        next = next->ptrNext;
+    }
+    
+    *head = nullptr;
+}
+
+Node* geradorFila(int iSize, bool bAscending=true)
+{
+    return nullptr;
+}
+
+Node* geradorFilaDesordenada(int iSize)
+{
+    return nullptr;
 }
 
 void swapValues(Node* node1, Node* node2)
