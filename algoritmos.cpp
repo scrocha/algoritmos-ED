@@ -1,9 +1,14 @@
 #include <iostream>
+#include <chrono>
 
 using std::cout;
 using std::cin;
 using std::endl;
 using std::string;
+
+using std::chrono::high_resolution_clock;
+using std::chrono::duration_cast;
+using std::chrono::nanoseconds;
 
 typedef struct Node{
     int iPayload;
@@ -26,6 +31,7 @@ void clearList(Node**);
 void swapValues(Node*, Node*);
 Node* geradorFila(int, bool);
 Node* geradorFilaMeioOrdenada(int);
+float tempoMedioDeExecucao(Node*, int, int);
 
 // Algoritmos
 void bubbleSort(Node*, int);
@@ -34,10 +40,75 @@ void selectionSort(Node*);
 void selectionSortOtimizado(Node*);
 
 int main(){
-    Node* head = nullptr;
-    // displayList(head);
-    // cout << "=================================" << endl;
-
+    int iNumeroIteracoes = 10;
+    int iNumeroDeElementos = 10000;
+    Node* ptrHead = nullptr;
+    float tempo = 0;
+    
+    cout << "\nFila Invertida: \n" << endl;
+    for (int i = 0; i < iNumeroIteracoes; i++)
+    {
+        ptrHead = geradorFila(iNumeroDeElementos, false);
+        tempo = tempo + tempoMedioDeExecucao(ptrHead, 1, iNumeroDeElementos);
+    }
+    cout << "Tempo de execução médio (bubble sort): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
+    
+    tempo = 0;
+    for (int i = 0; i < iNumeroIteracoes; i++)
+    {
+        ptrHead = geradorFila(iNumeroDeElementos, false);
+        tempo = tempo + tempoMedioDeExecucao(ptrHead, 2, iNumeroDeElementos);
+    }
+    cout << "Tempo de execução médio (bubble sort otimizado): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
+    
+    tempo = 0;
+    for (int i = 0; i < iNumeroIteracoes; i++)
+    {
+        ptrHead = geradorFila(iNumeroDeElementos, false);
+        tempo = tempo + tempoMedioDeExecucao(ptrHead, 3, iNumeroDeElementos);
+    }
+    cout << "Tempo de execução médio (selection): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
+    
+    tempo = 0;
+    for (int i = 0; i < iNumeroIteracoes; i++)
+    {
+        ptrHead = geradorFila(iNumeroDeElementos, false);
+        tempo = tempo + tempoMedioDeExecucao(ptrHead, 4, iNumeroDeElementos);
+    }
+    cout << "Tempo de execução médio (selection otimizado): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
+    
+    cout << "\nFila Meio Ordenada: \n" << endl;
+    for (int i = 0; i < iNumeroIteracoes; i++)
+    {
+        ptrHead = geradorFilaMeioOrdenada(iNumeroDeElementos);
+        tempo = tempo + tempoMedioDeExecucao(ptrHead, 1, iNumeroDeElementos);
+    }
+    cout << "Tempo de execução médio (bubble sort): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
+    
+    tempo = 0;
+    for (int i = 0; i < iNumeroIteracoes; i++)
+    {
+        ptrHead = geradorFilaMeioOrdenada(iNumeroDeElementos);
+        tempo = tempo + tempoMedioDeExecucao(ptrHead, 2, iNumeroDeElementos);
+    }
+    cout << "Tempo de execução médio (bubble sort otimizado): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
+    
+    tempo = 0;
+    for (int i = 0; i < iNumeroIteracoes; i++)
+    {
+        ptrHead = geradorFilaMeioOrdenada(iNumeroDeElementos);
+        tempo = tempo + tempoMedioDeExecucao(ptrHead, 3, iNumeroDeElementos);
+    }
+    cout << "Tempo de execução médio (selection): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
+    
+    tempo = 0;
+    for (int i = 0; i < iNumeroIteracoes; i++)
+    {
+        ptrHead = geradorFilaMeioOrdenada(iNumeroDeElementos);
+        tempo = tempo + tempoMedioDeExecucao(ptrHead, 4, iNumeroDeElementos);
+    }
+    cout << "Tempo de execução médio (selection otimizado): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
+    
     return 0;
 }
 
@@ -390,4 +461,33 @@ void selectionSortOtimizado(Node* ptrFirstNode)
         current = current->ptrNext;
     }
 
+}
+
+float tempoMedioDeExecucao(Node* head, int iMetodo, int iNumNode)
+{
+    auto timeStart = high_resolution_clock::now();
+    
+    switch (iMetodo)
+    {
+        case 1:
+            bubbleSort(head, iNumNode);
+            break;
+        case 2:
+            bubbleSortOtimizado(head, iNumNode);
+            break;
+        case 3:
+            selectionSort(head);
+            break;
+        case 4:
+            selectionSortOtimizado(head);
+            break;
+        default:
+            cout << "\nMétodo Inválido\n" << endl;
+            break;
+    }
+
+    auto timeStop = high_resolution_clock::now();
+
+    auto timeDuration = duration_cast<nanoseconds>(timeStop - timeStart);
+    return timeDuration.count();
 }
