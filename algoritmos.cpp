@@ -24,8 +24,8 @@ Node* searchNodebyValue(Node**, int);
 void clearList(Node**);
 // Funções de auxílio para os algoritmos
 void swapValues(Node*, Node*);
-Node* geradorFila(unsigned int, bool=true);
-Node* geradorFilaDesordenada(unsigned int);
+Node* geradorFila(int, bool);
+Node* geradorFilaDesordenada(int);
 
 // Algoritmos
 void bubbleSort(Node*, int);
@@ -217,14 +217,44 @@ void clearList(Node** head)
     *head = nullptr;
 }
 
-Node* geradorFila(int iSize, bool bAscending=true)
+Node* geradorFila(int iSize, bool bAscending)
 {
-    return nullptr;
+    Node* head = nullptr;
+
+    if (bAscending)
+    {
+        for (int i=0; i<iSize; i++)
+        {
+            insertEnd(&head, i);
+        }
+        
+    }
+    else
+    {
+        for (int i=0; i<iSize; i++)
+        {
+            insertEnd(&head, iSize-i-1);
+        }
+        
+    }    
+
+
+    return head;
 }
 
 Node* geradorFilaDesordenada(int iSize)
 {
-    return nullptr;
+    Node* head = nullptr;
+    
+    int iSize2 = iSize/2;
+
+    for (int i=0; i<iSize2; i++)
+    {
+        insertEnd(&head, 2*i);
+        insertEnd(&head, iSize-(2*i+1));
+    }
+    
+    return head;
 }
 
 void swapValues(Node* node1, Node* node2)
