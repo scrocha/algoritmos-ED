@@ -45,7 +45,7 @@ int main(){
     Node* ptrHead = nullptr;
     float tempo = 0;
     
-    cout << "\nFila Invertida: \n" << endl;
+    cout << "\nLista Invertida: \n" << endl;
     for (int i = 0; i < iNumeroIteracoes; i++)
     {
         ptrHead = geradorFila(iNumeroDeElementos, false);
@@ -77,7 +77,7 @@ int main(){
     }
     cout << "Tempo de execução médio (selection otimizado): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
     
-    cout << "\nFila Meio Ordenada: \n" << endl;
+    cout << "\nLista Meio Ordenada: \n" << endl;
     for (int i = 0; i < iNumeroIteracoes; i++)
     {
         ptrHead = geradorFilaMeioOrdenada(iNumeroDeElementos);
