@@ -127,7 +127,6 @@ float tempoMedioDeExecucao(Node* head, int iMetodo, int iNumNode)
         case 5:
             insertionSort(head, iNumNode);
         default:
-            cout << "\nMétodo Inválido\n" << endl;
             break;
     }
 
