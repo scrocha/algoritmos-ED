@@ -15,98 +15,29 @@ using std::chrono::high_resolution_clock;
 using std::chrono::duration_cast;
 using std::chrono::nanoseconds;
 
-float tempoMedioDeExecucao(Node*, int, int);
+float tempoDeExecucao(Node*, int, int);
 
 int main(){
     int iNumeroIteracoes = 10;
     int iNumeroDeElementos = 10000;
     Node* ptrHead = nullptr;
     float tempo = 0;
-    
-    cout << "\nLista Invertida: \n" << endl;
-    for (int i = 0; i < iNumeroIteracoes; i++)
-    {
-        ptrHead = geradorFila(iNumeroDeElementos, false);
-        tempo = tempo + tempoMedioDeExecucao(ptrHead, 1, iNumeroDeElementos);
-    }
-    cout << "Tempo de execução médio (bubble sort): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
-    
-    tempo = 0;
-    for (int i = 0; i < iNumeroIteracoes; i++)
-    {
-        ptrHead = geradorFila(iNumeroDeElementos, false);
-        tempo = tempo + tempoMedioDeExecucao(ptrHead, 2, iNumeroDeElementos);
-    }
-    cout << "Tempo de execução médio (bubble sort otimizado): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
-    
-    tempo = 0;
-    for (int i = 0; i < iNumeroIteracoes; i++)
-    {
-        ptrHead = geradorFila(iNumeroDeElementos, false);
-        tempo = tempo + tempoMedioDeExecucao(ptrHead, 3, iNumeroDeElementos);
-    }
-    cout << "Tempo de execução médio (selection): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
-    
-    tempo = 0;
-    for (int i = 0; i < iNumeroIteracoes; i++)
-    {
-        ptrHead = geradorFila(iNumeroDeElementos, false);
-        tempo = tempo + tempoMedioDeExecucao(ptrHead, 4, iNumeroDeElementos);
-    }
-    cout << "Tempo de execução médio (selection otimizado): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
 
-    tempo = 0;
-    for (int i = 0; i < iNumeroIteracoes; i++)
-    {
-        ptrHead = geradorFilaMeioOrdenada(iNumeroDeElementos);
-        tempo = tempo + tempoMedioDeExecucao(ptrHead, 5, iNumeroDeElementos);
-    }
-    cout << "Tempo de execução médio (insertion): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
-    
-    cout << "\nLista Meio Ordenada: \n" << endl;
-    for (int i = 0; i < iNumeroIteracoes; i++)
-    {
-        ptrHead = geradorFilaMeioOrdenada(iNumeroDeElementos);
-        tempo = tempo + tempoMedioDeExecucao(ptrHead, 1, iNumeroDeElementos);
-    }
-    cout << "Tempo de execução médio (bubble sort): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
-    
-    tempo = 0;
-    for (int i = 0; i < iNumeroIteracoes; i++)
-    {
-        ptrHead = geradorFilaMeioOrdenada(iNumeroDeElementos);
-        tempo = tempo + tempoMedioDeExecucao(ptrHead, 2, iNumeroDeElementos);
-    }
-    cout << "Tempo de execução médio (bubble sort otimizado): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
-    
-    tempo = 0;
-    for (int i = 0; i < iNumeroIteracoes; i++)
-    {
-        ptrHead = geradorFilaMeioOrdenada(iNumeroDeElementos);
-        tempo = tempo + tempoMedioDeExecucao(ptrHead, 3, iNumeroDeElementos);
-    }
-    cout << "Tempo de execução médio (selection): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
-    
-    tempo = 0;
-    for (int i = 0; i < iNumeroIteracoes; i++)
-    {
-        ptrHead = geradorFilaMeioOrdenada(iNumeroDeElementos);
-        tempo = tempo + tempoMedioDeExecucao(ptrHead, 4, iNumeroDeElementos);
-    }
-    cout << "Tempo de execução médio (selection otimizado): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
+    cout << "BUBBLESORT, BUBBLESORT_OT, SELECTIONSORT, SELECTIONSORT_OT, INSERTION" << "\n";
 
-    tempo = 0;
-    for (int i = 0; i < iNumeroIteracoes; i++)
+    for(int i = 1; i <= 100; i++)
     {
-        ptrHead = geradorFilaMeioOrdenada(iNumeroDeElementos);
-        tempo = tempo + tempoMedioDeExecucao(ptrHead, 5, iNumeroDeElementos);
+        cout << tempoDeExecucao(geradorFilaMeioOrdenada(iNumeroDeElementos), 1, iNumeroDeElementos) << ",";
+        cout << tempoDeExecucao(geradorFilaMeioOrdenada(iNumeroDeElementos), 2, iNumeroDeElementos) << ",";
+        cout << tempoDeExecucao(geradorFilaMeioOrdenada(iNumeroDeElementos), 3, iNumeroDeElementos) << ",";
+        cout << tempoDeExecucao(geradorFilaMeioOrdenada(iNumeroDeElementos), 4, iNumeroDeElementos) << ",";
+        cout << tempoDeExecucao(geradorFilaMeioOrdenada(iNumeroDeElementos), 5, iNumeroDeElementos) << "\n";
     }
-    cout << "Tempo de execução médio (insertion): " << tempo/iNumeroIteracoes << " nanosegundos.\n";
     
     return 0;
 }
 
-float tempoMedioDeExecucao(Node* head, int iMetodo, int iNumNode)
+float tempoDeExecucao(Node* head, int iMetodo, int iNumNode)
 {
     auto timeStart = high_resolution_clock::now();
     
