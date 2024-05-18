@@ -15,54 +15,53 @@ using std::chrono::high_resolution_clock;
 using std::chrono::duration_cast;
 using std::chrono::nanoseconds;
 
-float tempoDeExecucao(Node*, int, int);
-
-int main(){
+namespace Tempo
+{
     int iNumeroIteracoes = 10;
     int iNumeroDeElementos = 10000;
-    Node* ptrHead = nullptr;
-    float tempo = 0;
 
+    float tempoDeExecucao(Node* head, int iMetodo, int iNumNode)
+    {
+        auto timeStart = high_resolution_clock::now();
+        
+        switch (iMetodo)
+        {
+            case 1:
+                bubbleSort(head, iNumNode);
+                break;
+            case 2:
+                bubbleSortOtimizado(head, iNumNode);
+                break;
+            case 3:
+                selectionSort(head);
+                break;
+            case 4:
+                selectionSortOtimizado(head);
+                break;
+            case 5:
+                insertionSort(head, iNumNode);
+            default:
+                break;
+        }
+
+        auto timeStop = high_resolution_clock::now();
+
+        auto timeDuration = duration_cast<nanoseconds>(timeStop - timeStart);
+        return timeDuration.count();
+    }
+}
+
+int main(){
     cout << "BUBBLESORT, BUBBLESORT_OT, SELECTIONSORT, SELECTIONSORT_OT, INSERTION" << "\n";
 
-    for(int i = 1; i <= 100; i++)
+    for(int i = 1; i <= Tempo::iNumeroIteracoes; i++)
     {
-        cout << tempoDeExecucao(geradorFilaMeioOrdenada(iNumeroDeElementos), 1, iNumeroDeElementos) << ",";
-        cout << tempoDeExecucao(geradorFilaMeioOrdenada(iNumeroDeElementos), 2, iNumeroDeElementos) << ",";
-        cout << tempoDeExecucao(geradorFilaMeioOrdenada(iNumeroDeElementos), 3, iNumeroDeElementos) << ",";
-        cout << tempoDeExecucao(geradorFilaMeioOrdenada(iNumeroDeElementos), 4, iNumeroDeElementos) << ",";
-        cout << tempoDeExecucao(geradorFilaMeioOrdenada(iNumeroDeElementos), 5, iNumeroDeElementos) << "\n";
+        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 1, Tempo::iNumeroDeElementos) << ",";
+        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 2, Tempo::iNumeroDeElementos) << ",";
+        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 3, Tempo::iNumeroDeElementos) << ",";
+        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 4, Tempo::iNumeroDeElementos) << ",";
+        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 5, Tempo::iNumeroDeElementos) << "\n";
     }
     
     return 0;
-}
-
-float tempoDeExecucao(Node* head, int iMetodo, int iNumNode)
-{
-    auto timeStart = high_resolution_clock::now();
-    
-    switch (iMetodo)
-    {
-        case 1:
-            bubbleSort(head, iNumNode);
-            break;
-        case 2:
-            bubbleSortOtimizado(head, iNumNode);
-            break;
-        case 3:
-            selectionSort(head);
-            break;
-        case 4:
-            selectionSortOtimizado(head);
-            break;
-        case 5:
-            insertionSort(head, iNumNode);
-        default:
-            break;
-    }
-
-    auto timeStop = high_resolution_clock::now();
-
-    auto timeDuration = duration_cast<nanoseconds>(timeStop - timeStart);
-    return timeDuration.count();
 }
