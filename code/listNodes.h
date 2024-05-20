@@ -20,5 +20,7 @@ void clearList(Node**);
 void swapValues(Node*, Node*);
 Node* geradorFila(int, bool);
 Node* geradorFilaMeioOrdenada(int);
+int* listToArray(Node**, int);
+Node* arrayToList(int*, int);
 
 #endif

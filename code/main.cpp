@@ -2,6 +2,7 @@
 #include "bubbleSort.h"
 #include "selectionSort.h"
 #include "insertionSort.h"
+#include "radixSort.h"
 
 #include <iostream>
 #include <chrono>
@@ -18,7 +19,7 @@ using std::chrono::nanoseconds;
 namespace Tempo
 {
     int iNumeroIteracoes = 10;
-    int iNumeroDeElementos = 10000;
+    int iNumeroDeElementos = 100;
 
     float tempoDeExecucao(Node* head, int iMetodo, int iNumNode)
     {
@@ -40,6 +41,9 @@ namespace Tempo
                 break;
             case 5:
                 insertionSort(head, iNumNode);
+                break;
+            case 6:
+                radixSort(&head);
             default:
                 break;
         }
@@ -62,6 +66,6 @@ int main(){
         cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 4, Tempo::iNumeroDeElementos) << ",";
         cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 5, Tempo::iNumeroDeElementos) << "\n";
     }
-    
+
     return 0;
 }

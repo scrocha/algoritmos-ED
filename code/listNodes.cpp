@@ -6,7 +6,7 @@ using std::endl;
 
 // Cria um novo nó com o payload especificado
 Node* createNode(int iPayload){
-    Node* temp = new Node();
+    Node* temp = (Node*) malloc(sizeof(Node));
     temp->iPayload = iPayload;
     temp->ptrNext = nullptr;
     temp->ptrPrev = nullptr;
@@ -107,7 +107,7 @@ void deleteNode(Node** head, Node* ptrDelete)
 
     if(ptrDelete->ptrPrev != nullptr) ptrDelete->ptrPrev->ptrNext = ptrDelete->ptrNext;
 
-    delete ptrDelete;
+    free(ptrDelete);
 }
 
 // Insere um novo nó antes do local especificado
@@ -165,7 +165,7 @@ void clearList(Node** head)
     while (current != nullptr)
     {
         next = current->ptrNext;
-        delete current;
+        free(current);
         current = next;
     }
     
@@ -179,7 +179,7 @@ Node* geradorFila(int iSize, bool bAscending)
 
     if (bAscending)
     {
-        for (int i=0; i<iSize; i++)
+        for (int i=1; i<=iSize; i++)
         {
             insertEnd(&head, i);
         }
@@ -188,7 +188,7 @@ Node* geradorFila(int iSize, bool bAscending)
     {
         for (int i=0; i<iSize; i++)
         {
-            insertEnd(&head, iSize-i-1);
+            insertEnd(&head, iSize-i);
         }        
     }    
 
@@ -202,7 +202,7 @@ Node* geradorFilaMeioOrdenada(int iSize)
     
     int iSize2 = (iSize+1)/2;
 
-    for (int i=0; i<iSize2; i++)
+    for (int i=1; i<=iSize2; i++)
     {
         insertFront(&head, i);
         insertEnd(&head, iSize2+i);
@@ -231,4 +231,30 @@ void swapValues(Node* node1, Node* node2)
     }
 
     return;
+}
+
+int* listToArray(Node** head, int iSize)
+{
+    int *arriValores = (int*) malloc(sizeof(int)*iSize);
+    Node* current = (*head);
+
+    for (int i=0; i<iSize; i++)
+    {
+        arriValores[i] = current->iPayload;
+        current = current->ptrNext;
+    }
+
+    return arriValores;
+}
+
+Node* arrayToList(int* arriValores, int iSize)
+{
+    Node* head = nullptr;
+
+    for (int i=0; i<iSize; i++)
+    {
+        insertEnd(&head, arriValores[i]);
+    }
+
+    return head;
 }
