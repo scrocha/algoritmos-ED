@@ -56,7 +56,7 @@ namespace Tempo
 }
 
 int main(){
-    cout << "BUBBLESORT, BUBBLESORT_OT, SELECTIONSORT, SELECTIONSORT_OT, INSERTION" << "\n";
+    cout << "BUBBLESORT, BUBBLESORT_OT, SELECTIONSORT, SELECTIONSORT_OT, INSERTION, RADIX" << "\n";
 
     for(int i = 1; i <= Tempo::iNumeroIteracoes; i++)
     {
@@ -65,6 +65,7 @@ int main(){
         cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 3, Tempo::iNumeroDeElementos) << ",";
         cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 4, Tempo::iNumeroDeElementos) << ",";
         cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 5, Tempo::iNumeroDeElementos) << "\n";
+        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 6, Tempo::iNumeroDeElementos) << "\n";
     }
 
     return 0;
