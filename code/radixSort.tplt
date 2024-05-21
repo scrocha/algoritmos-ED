@@ -1,13 +1,11 @@
-#include "radixSort.h"
-#include <cstdlib>
-#include <iostream>
-using namespace std;
+#include "listNodes.h"
 
-void radixSort(Node** head)
+template <typename T>
+void radixSort(Node<T>** head)
 {
     if ((*head) == nullptr) return;
 
-    Node* current = (*head)->ptrNext;
+    Node<T>* current = (*head)->ptrNext;
     int iSize = 1;
     int iMax = (*head)->iPayload;
 
@@ -70,4 +68,16 @@ void radixSort(Node** head)
     *head = arrayToList(arriResult, iSize);
     
     free(arriResult);
+    /*
+    Exemplo de execução:
+    Array = [86, 93, 22, 04, 71, 25]
+    Primeiro passo: contar e ordenar a primeira casa decimal:
+    0-0, 1-1, 2-1, 3-0, 4-1, 5-1, 6-1, 7-0, 8-0, 9-0
+    E realizamos a ordenção de cada casa do seguinte modo:
+    [71, 22, 93, 04, 25, 86]
+    Realizamos a mesma etapa para a segunda casa decimal:
+    0-1, 1-0, 2-2, 3-0, 4-0, 5-0, 6-0, 7-1, 8-1, 9-1
+    [04, 22, 25, 71, 86, 93]
+    Note que 
+    */
 }

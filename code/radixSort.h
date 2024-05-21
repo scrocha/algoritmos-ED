@@ -1,8 +1,9 @@
-#include "listNodes.h"
-
 #ifndef RADIXSORT_H
 #define RADIXSORT_H
 
-void radixSort(Node**);
+#include "radixSort.tplt"
+
+template <typename T>
+void radixSort(Node<T>**);
 
 #endif

@@ -1,12 +1,12 @@
-#include "listNodes.h"
 #include <iostream>
 
 using std::cout;
 using std::endl;
 
 // Cria um novo nó com o payload especificado
-Node* createNode(int iPayload){
-    Node* temp = (Node*) malloc(sizeof(Node));
+template <typename T>
+Node<T>* createNode(T iPayload){
+    Node<T>* temp = (Node<T>*) malloc(sizeof(Node<T>));
     temp->iPayload = iPayload;
     temp->ptrNext = nullptr;
     temp->ptrPrev = nullptr;
@@ -15,7 +15,8 @@ Node* createNode(int iPayload){
 }
 
 // Exibe os payloads dos nós da lista
-void displayList(Node* node){
+template <typename T>
+void displayList(Node<T>* node){
     if(node == nullptr)
     {
         cout << "Lista Vazia: não é possível realizar displayList" << endl;
@@ -27,7 +28,7 @@ void displayList(Node* node){
         return;
     }
 
-    Node* temp = node;
+    Node<T>* temp = node;
 
     cout << "Payload: ";
 
@@ -42,8 +43,9 @@ void displayList(Node* node){
 }
 
 // Insere um novo nó no início da lista
-void insertFront(Node** head, int iPayload){
-    Node* newNode = createNode(iPayload);
+template <typename T>
+void insertFront(Node<T>** head, T iPayload){
+    Node<T>* newNode = createNode(iPayload);
     
     if (*head != nullptr)
     {
@@ -57,15 +59,16 @@ void insertFront(Node** head, int iPayload){
 }
 
 // Insere um novo nó no final da lista
-void insertEnd(Node** head, int iPayload){
-    Node* newNode = createNode(iPayload);
+template <typename T>
+void insertEnd(Node<T>** head, T iPayload){
+    Node<T>* newNode = createNode(iPayload);
     
     if(*head == nullptr)
     {
         (*head) = newNode;
         return;
     }
-    Node* temp = (*head);
+    Node<T>* temp = (*head);
 
     // Percorre a lista até seu fim (ptrNext do último nó é NULL)
     while(temp->ptrNext != nullptr) temp = temp->ptrNext;
@@ -75,14 +78,15 @@ void insertEnd(Node** head, int iPayload){
 }
 
 // Insere um novo nó após o local especificado
-void insertAfter(Node* ptrLocation, int iPayload)
+template <typename T>
+void insertAfter(Node<T>* ptrLocation, T iPayload)
 {
     if (ptrLocation == nullptr)
     {
         cout << "Location é NULL." << endl;
         return;
     }
-    Node* newNode = createNode(iPayload);
+    Node<T>* newNode = createNode(iPayload);
 
     newNode->ptrNext = ptrLocation->ptrNext;
     newNode->ptrPrev = ptrLocation;
@@ -93,7 +97,8 @@ void insertAfter(Node* ptrLocation, int iPayload)
 }
 
 // Deleta um nó específico da lista
-void deleteNode(Node** head, Node* ptrDelete)
+template <typename T>
+void deleteNode(Node<T>** head, Node<T>* ptrDelete)
 {
     if (*head == nullptr || ptrDelete == nullptr)
     {
@@ -111,13 +116,14 @@ void deleteNode(Node** head, Node* ptrDelete)
 }
 
 // Insere um novo nó antes do local especificado
-void insertBefore(Node* ptrLocation, int iPayload) {
+template <typename T>
+void insertBefore(Node<T>* ptrLocation, T iPayload) {
     if (ptrLocation == nullptr) {
         cout << "Location é NULL." << endl;
         return;
     }
 
-    Node* newNode = createNode(iPayload);
+    Node<T>* newNode = createNode(iPayload);
 
     newNode->ptrNext = ptrLocation;
     newNode->ptrPrev = ptrLocation->ptrPrev;
@@ -129,14 +135,15 @@ void insertBefore(Node* ptrLocation, int iPayload) {
 }
 
 // Procura um nó com um valor específico na lista
-Node* searchNodebyValue(Node** head, int iValue)
+template <typename T>
+Node<T>* searchNodebyValue(Node<T>** head, T iValue)
 {
     if (*head == nullptr)
     {
         cout << "Fila vazia, não foi possível achar o nó." << endl;
         return nullptr;
     }
-    Node* current = *head;
+    Node<T>* current = *head;
     while (current != nullptr && current->iPayload != iValue) current = current->ptrNext;
     if (current == nullptr)
     {
@@ -147,9 +154,10 @@ Node* searchNodebyValue(Node** head, int iValue)
 }
 
 // Deleta um nó com um valor específico da lista
-void deleteNodebyValue(Node** head, int iValue)
+template <typename T>
+void deleteNodebyValue(Node<T>** head, T iValue)
 {
-    Node* selected = searchNodebyValue(head, iValue);
+    Node<T>* selected = searchNodebyValue(head, iValue);
     if (selected == nullptr) return;
 
     deleteNode(head, selected);
@@ -157,10 +165,11 @@ void deleteNodebyValue(Node** head, int iValue)
 }
 
 // Limpa todos os nós da lista
-void clearList(Node** head)
+template <typename T>
+void clearList(Node<T>** head)
 {
-    Node* current = *head;
-    Node* next = nullptr;
+    Node<T>* current = *head;
+    Node<T>* next = nullptr;
 
     while (current != nullptr)
     {
@@ -173,9 +182,10 @@ void clearList(Node** head)
 }
 
 // Gera uma lista com valores ascendentes ou descendentes
-Node* geradorFila(int iSize, bool bAscending)
+template <typename T>
+Node<T>* geradorFila(int iSize, bool bAscending)
 {
-    Node* head = nullptr;
+    Node<T>* head = nullptr;
 
     if (bAscending)
     {
@@ -196,9 +206,10 @@ Node* geradorFila(int iSize, bool bAscending)
 }
 
 // Gera uma lista com a primeira metade em ordem crescente e a segunda metade em ordem decrescente
-Node* geradorFilaMeioOrdenada(int iSize)
+template <typename T>
+Node<T>* geradorFilaMeioOrdenada(int iSize)
 {
-    Node* head = nullptr;
+    Node<T>* head = nullptr;
     
     int iSize2 = (iSize+1)/2;
 
@@ -212,7 +223,8 @@ Node* geradorFilaMeioOrdenada(int iSize)
 }
 
 // Troca os valores de dois nós
-void swapValues(Node* node1, Node* node2)
+template <typename T>
+void swapValues(Node<T>* node1, Node<T>* node2)
 {
     if (node1->iPayload == node2->iPayload)
     {
@@ -233,10 +245,11 @@ void swapValues(Node* node1, Node* node2)
     return;
 }
 
-int* listToArray(Node** head, int iSize)
+template <typename T>
+T* listToArray(Node<T>** head, int iSize)
 {
-    int *arriValores = (int*) malloc(sizeof(int)*iSize);
-    Node* current = (*head);
+    T *arriValores = (T*) malloc(sizeof(T)*iSize);
+    Node<T>* current = (*head);
 
     for (int i=0; i<iSize; i++)
     {
@@ -247,9 +260,10 @@ int* listToArray(Node** head, int iSize)
     return arriValores;
 }
 
-Node* arrayToList(int* arriValores, int iSize)
+template <typename T>
+Node<T>* arrayToList(T* arriValores, int iSize)
 {
-    Node* head = nullptr;
+    Node<T>* head = nullptr;
 
     for (int i=0; i<iSize; i++)
     {

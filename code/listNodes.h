@@ -1,26 +1,58 @@
 #ifndef NODE_H
 #define NODE_H
 
-typedef struct Node {
-    int iPayload;
-    Node* ptrNext;
-    Node* ptrPrev;
-} Node;
+template <typename T>
+struct Node {
+    T iPayload;
+    Node<T>* ptrNext;
+    Node<T>* ptrPrev;
+};
 
-Node* createNode(int);
-void insertFront(Node**, int);
-void insertEnd(Node**, int);
-void insertAfter(Node*, int);
-void deleteNode(Node**, Node*);
-void displayList(Node*);
-void insertBefore(Node*, int);
-void deleteNodebyValue(Node**, int);
-Node* searchNodebyValue(Node**, int);
-void clearList(Node**);
-void swapValues(Node*, Node*);
-Node* geradorFila(int, bool);
-Node* geradorFilaMeioOrdenada(int);
-int* listToArray(Node**, int);
-Node* arrayToList(int*, int);
+#include "listNodes.tplt"
+
+template <typename T>
+Node<T>* createNode(T);
+
+template <typename T>
+void displayList(Node<T>*);
+
+template <typename T>
+void insertFront(Node<T>**, T);
+
+template <typename T>
+void insertEnd(Node<T>**, T);
+
+template <typename T>
+void insertAfter(Node<T>*, T);
+
+template <typename T>
+void deleteNode(Node<T>**, Node<T>*);
+
+template <typename T>
+void insertBefore(Node<T>*, T);
+
+template <typename T>
+Node<T>* searchNodebyValue(Node<T>**, T);
+
+template <typename T>
+void deleteNodebyValue(Node<T>**, T);
+
+template <typename T>
+void clearList(Node<T>**);
+
+template <typename T>
+void swapValues(Node<T>*, Node<T>*);
+
+template <typename T>
+Node<T>* geradorFila(int, bool);
+
+template <typename T>
+Node<T>* geradorFilaMeioOrdenada(int);
+
+template <typename T>
+T* listToArray(Node<T>**, int);
+
+template <typename T>
+Node<T>* arrayToList(T*, int);
 
 #endif

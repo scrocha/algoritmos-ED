@@ -18,10 +18,10 @@ using std::chrono::nanoseconds;
 
 namespace Tempo
 {
-    int iNumeroIteracoes = 10;
-    int iNumeroDeElementos = 100;
+    const int iNumeroIteracoes = 10;
+    const int iNumeroDeElementos = 100;
 
-    float tempoDeExecucao(Node* head, int iMetodo, int iNumNode)
+    float tempoDeExecucao(Node<int>* head, int iMetodo, int iNumNode)
     {
         auto timeStart = high_resolution_clock::now();
         
@@ -60,12 +60,12 @@ int main(){
 
     for(int i = 1; i <= Tempo::iNumeroIteracoes; i++)
     {
-        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 1, Tempo::iNumeroDeElementos) << ",";
-        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 2, Tempo::iNumeroDeElementos) << ",";
-        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 3, Tempo::iNumeroDeElementos) << ",";
-        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 4, Tempo::iNumeroDeElementos) << ",";
-        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 5, Tempo::iNumeroDeElementos) << "\n";
-        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada(Tempo::iNumeroDeElementos), 6, Tempo::iNumeroDeElementos) << "\n";
+        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada<int>(Tempo::iNumeroDeElementos), 1, Tempo::iNumeroDeElementos) << ",";
+        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada<int>(Tempo::iNumeroDeElementos), 2, Tempo::iNumeroDeElementos) << ",";
+        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada<int>(Tempo::iNumeroDeElementos), 3, Tempo::iNumeroDeElementos) << ",";
+        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada<int>(Tempo::iNumeroDeElementos), 4, Tempo::iNumeroDeElementos) << ",";
+        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada<int>(Tempo::iNumeroDeElementos), 5, Tempo::iNumeroDeElementos) << "\n";
+        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada<int>(Tempo::iNumeroDeElementos), 6, Tempo::iNumeroDeElementos) << "\n";
     }
 
     return 0;

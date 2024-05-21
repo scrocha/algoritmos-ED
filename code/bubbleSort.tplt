@@ -1,9 +1,10 @@
-#include "bubbleSort.h"
+#include "listNodes.h"
 
-void bubbleSort(Node* ptrFirstNode, int iNumNode)
+template <typename T>
+void bubbleSort(Node<T>* ptrFirstNode, int iNumNode)
 {   
     // Inicializa um ponteiro temporário para percorrer a lista
-    Node* tempNode = ptrFirstNode;
+    Node<T>* tempNode = ptrFirstNode;
 
     // Percorre a lista 'iNumNode - 1' vezes, onde 'iNumNode' é o número de elementos na lista
     for (int i = 1; i < iNumNode; i++)
@@ -24,10 +25,11 @@ void bubbleSort(Node* ptrFirstNode, int iNumNode)
     }
 }
 
-void bubbleSortOtimizado(Node* ptrFirstNode, int iNumNode)
+template <typename T>
+void bubbleSortOtimizado(Node<T>* ptrFirstNode, int iNumNode)
 {   
     // Inicializa um ponteiro temporário para percorrer a lista
-    Node* tempNode = ptrFirstNode;
+    Node<T>* tempNode = ptrFirstNode;
     // Variável para indicar se a lista está desordenada
     bool bDesordenado = false;
 

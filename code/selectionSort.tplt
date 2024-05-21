@@ -1,14 +1,15 @@
-#include "selectionSort.h"
+#include "listNodes.h"
 
-void selectionSort(Node* ptrFirstNode)
+template <typename T>
+void selectionSort(Node<T>* ptrFirstNode)
 {
     // Inicializa o ponteiro para o nó inicial a ser comparado
-    Node* current = ptrFirstNode;
+    Node<T>* current = ptrFirstNode;
     // Loop para comparar todos os nós até chegar ao final
     while (current != nullptr)
     {
         // Ponteiro temporário para a comparação com os elementos adjascentes da lista
-        Node* tempNode = current->ptrNext;
+        Node<T>* tempNode = current->ptrNext;
         // Percorre os valores adjascentes da lista
         while (tempNode != nullptr)
         {
@@ -27,18 +28,19 @@ void selectionSort(Node* ptrFirstNode)
 
 }
 
-void selectionSortOtimizado(Node* ptrFirstNode)
+template <typename T>
+void selectionSortOtimizado(Node<T>* ptrFirstNode)
 {
     // Inicializa o ponteiro para o nó inicial a ser comparado
-    Node* current = ptrFirstNode;
+    Node<T>* current = ptrFirstNode;
     // Loop para comparar todos os nós até chegar ao final, mas agora sem chegar ao
     // último nó, pois ele não possui ponteiros adjascentes então não precisa ser comparado
     while (current->ptrNext != nullptr)
     {
         // Ponteiro com o menor valor até o momento
-        Node* minNode = current;
+        Node<T>* minNode = current;
         // Ponteiro temporário para a comparação com os elementos adjascentes da lista
-        Node* tempNode = current->ptrNext;
+        Node<T>* tempNode = current->ptrNext;
         // Percorre os valores adjascentes da lista
         while (tempNode != nullptr)
         {

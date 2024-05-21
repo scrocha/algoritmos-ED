@@ -1,8 +1,9 @@
-#include "listNodes.h"
-
 #ifndef INSERTIONSORT_H
 #define INSERTIONSORT_H
 
-void insertionSort(Node*, int);
+#include "insertionSort.tplt"
+
+template <typename T>
+void insertionSort(Node<T>*, int);
 
 #endif
