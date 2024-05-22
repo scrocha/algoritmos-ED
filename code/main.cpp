@@ -19,7 +19,7 @@ using std::chrono::nanoseconds;
 namespace Tempo
 {
     const int iNumeroIteracoes = 10;
-    const int iNumeroDeElementos = 100;
+    const int iNumeroDeElementos = 10000;
 
     float tempoDeExecucao(Node<int>* head, int iMetodo, int iNumNode)
     {
@@ -56,16 +56,16 @@ namespace Tempo
 }
 
 int main(){
-    cout << "BUBBLESORT, BUBBLESORT_OT, SELECTIONSORT, SELECTIONSORT_OT, INSERTION, RADIX" << "\n";
+    cout << "BUBBLESORT,BUBBLESORT_OT,SELECTIONSORT,SELECTIONSORT_OT,INSERTIONSORT,RADIXSORT" << "\n";
 
     for(int i = 1; i <= Tempo::iNumeroIteracoes; i++)
     {
-        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada<int>(Tempo::iNumeroDeElementos), 1, Tempo::iNumeroDeElementos) << ",";
-        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada<int>(Tempo::iNumeroDeElementos), 2, Tempo::iNumeroDeElementos) << ",";
-        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada<int>(Tempo::iNumeroDeElementos), 3, Tempo::iNumeroDeElementos) << ",";
-        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada<int>(Tempo::iNumeroDeElementos), 4, Tempo::iNumeroDeElementos) << ",";
-        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada<int>(Tempo::iNumeroDeElementos), 5, Tempo::iNumeroDeElementos) << "\n";
-        cout << Tempo::tempoDeExecucao(geradorFilaMeioOrdenada<int>(Tempo::iNumeroDeElementos), 6, Tempo::iNumeroDeElementos) << "\n";
+        cout << Tempo::tempoDeExecucao(geradorFila<int>(Tempo::iNumeroDeElementos), 1, Tempo::iNumeroDeElementos) << ",";
+        cout << Tempo::tempoDeExecucao(geradorFila<int>(Tempo::iNumeroDeElementos), 2, Tempo::iNumeroDeElementos) << ",";
+        cout << Tempo::tempoDeExecucao(geradorFila<int>(Tempo::iNumeroDeElementos), 3, Tempo::iNumeroDeElementos) << ",";
+        cout << Tempo::tempoDeExecucao(geradorFila<int>(Tempo::iNumeroDeElementos), 4, Tempo::iNumeroDeElementos) << ",";
+        cout << Tempo::tempoDeExecucao(geradorFila<int>(Tempo::iNumeroDeElementos), 5, Tempo::iNumeroDeElementos) << ",";
+        cout << Tempo::tempoDeExecucao(geradorFila<int>(Tempo::iNumeroDeElementos), 6, Tempo::iNumeroDeElementos) << "\n";
     }
 
     return 0;

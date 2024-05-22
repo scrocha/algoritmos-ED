@@ -8,46 +8,49 @@ struct Node {
     Node<T>* ptrPrev;
 };
 
-#include "listNodes.tplt"
+#include "listNodes.tpp"
+
+namespace basicNodeFuncs
+{
+    template <typename T>
+    Node<T>* createNode(T);
+
+    template <typename T>
+    void displayList(Node<T>*);
+
+    template <typename T>
+    void insertFront(Node<T>**, T);
+
+    template <typename T>
+    void insertEnd(Node<T>**, T);
+
+    template <typename T>
+    void insertAfter(Node<T>*, T);
+
+    template <typename T>
+    void deleteNode(Node<T>**, Node<T>*);
+
+    template <typename T>
+    void insertBefore(Node<T>*, T);
+
+    template <typename T>
+    Node<T>* searchNodebyValue(Node<T>**, T);
+
+    template <typename T>
+    void deleteNodebyValue(Node<T>**, T);
+
+    template <typename T>
+    void clearList(Node<T>**);
+}
 
 template <typename T>
-Node<T>* createNode(T);
+Node<T>* geradorFila(int);
 
 template <typename T>
-void displayList(Node<T>*);
-
-template <typename T>
-void insertFront(Node<T>**, T);
-
-template <typename T>
-void insertEnd(Node<T>**, T);
-
-template <typename T>
-void insertAfter(Node<T>*, T);
-
-template <typename T>
-void deleteNode(Node<T>**, Node<T>*);
-
-template <typename T>
-void insertBefore(Node<T>*, T);
-
-template <typename T>
-Node<T>* searchNodebyValue(Node<T>**, T);
-
-template <typename T>
-void deleteNodebyValue(Node<T>**, T);
-
-template <typename T>
-void clearList(Node<T>**);
+Node<T>* geradorFilaReversa(int);
 
 template <typename T>
 void swapValues(Node<T>*, Node<T>*);
-
-template <typename T>
-Node<T>* geradorFila(int, bool);
-
-template <typename T>
-Node<T>* geradorFilaMeioOrdenada(int);
 
 template <typename T>
 T* listToArray(Node<T>**, int);

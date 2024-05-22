@@ -1,7 +1,7 @@
 #ifndef SELECTIONSORT_H
 #define SELECTIONSORT_H
 
-#include "selectionSort.tplt"
+#include "selectionSort.tpp"
 
 template <typename T>
 void selectionSort(Node<T>*);

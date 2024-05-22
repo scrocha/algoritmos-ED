@@ -22,7 +22,7 @@ void radixSort(Node<T>** head)
     // Criamos um array com a lista
     int* arriList = listToArray(head, iSize);
     // Limpamos a lista original
-    clearList(head);
+    basicNodeFuncs::clearList(head);
 
     int potencia = 1;
     // Alocamos memória para o array ordenado
