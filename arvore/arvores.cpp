@@ -135,3 +135,16 @@ void traversePostOrder(Leaf* ptrStartingLeaf)
         cout << " " << ptrStartingLeaf->iPayload;
     }
 }
+
+void generateRandomArray(int* arr, int size, int minValue, int maxValue) {
+    // Usando random_device para gerar uma semente
+    std::random_device rd;
+    // Usando mt19937 como engine para geração de números aleatórios
+    std::mt19937 gen(rd());
+    // Distribuição uniforme entre minValue e maxValue
+    std::uniform_int_distribution<> dis(minValue, maxValue);
+
+    for (int i = 0; i < size; ++i) {
+        arr[i] = dis(gen);
+    }
+}

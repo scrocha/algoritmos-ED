@@ -2,6 +2,7 @@
 #define ARVORES_H
 
 #include <iostream>
+#include <random>
 
 typedef struct Leaf
 {
@@ -22,5 +23,7 @@ Leaf* createTree(int[], int);
 void traversePreOrder(Leaf*);
 void traverseInOrder(Leaf*);
 void traversePostOrder(Leaf*);
+
+void generateRandomArray(int*, int, int, int);
 
 #endif

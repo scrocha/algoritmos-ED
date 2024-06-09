@@ -1,9 +1,12 @@
 #include "dfsSearch.h"
 
-Leaf* dfsSearch(Leaf* startingLeaf, int iData)
+Leaf* dfsSearch(Leaf* ptrRoot, int iVal)
 {
-    if (startingLeaf == nullptr) return nullptr;
-    else if(iData == startingLeaf->iPayload) return startingLeaf;
-    else if(iData < startingLeaf->iPayload) return searchLeaf(startingLeaf->ptrLeft, iData);
-    else return searchLeaf(startingLeaf->ptrRight, iData);
+    if (ptrRoot == nullptr || ptrRoot->iPayload == iVal)
+        return ptrRoot;
+
+    Leaf* found = dfsSearch(ptrRoot->ptrLeft, iVal);
+    if (found != nullptr) return found;
+
+    return dfsSearch(ptrRoot->ptrRight, iVal);
 }

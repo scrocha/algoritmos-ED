@@ -6,6 +6,6 @@
 
 using namespace basicNodeFuncs;
 
-Leaf* bfsTrasversal(Leaf*, int);
+Leaf* bfsSearch(Leaf*, int);
 
 #endif
