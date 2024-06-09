@@ -12,7 +12,7 @@ using std::chrono::nanoseconds;
 
 int main()
 {
-    cout << "TEMPO_CRIACAO, TEMPO_BFS, TEMPO_DFS, TEMPO_CRIACAO_LISTA" << "\n"; 
+    cout << "TEMPO_CRIACAO, TEMPO_BFS, TEMPO_DFS" << "\n"; 
     for (int i = 0; i < 100; i++)
     {
         int* arr = new int[10000];
