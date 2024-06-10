@@ -1,29 +1,55 @@
 #ifndef ARVORES_H
 #define ARVORES_H
 
-#include <iostream>
-#include <random>
+template <typename T>
+struct Leaf {
+    T iPayload;
+    Leaf<T>* ptrLeft;
+    Leaf<T>* ptrRight;
+};
 
-typedef struct Leaf
-{
-  int iPayload;
-  
-  Leaf* ptrLeft;
-  Leaf* ptrRight;
+template <typename T>
+Leaf<T>* newLeaf(T);
 
-} Leaf;
+template <typename T>
+Leaf<T>* insertLeaf(Leaf<T>*, T);
 
-Leaf* newLeaf(int);
-Leaf* insertLeaf(Leaf*, int);
-Leaf* searchLeaf(Leaf*, int);
-Leaf* lesserLeaf(Leaf*);
-Leaf* deleteLeaf(Leaf*, int);
-Leaf* createTree(int[], int);
+template <typename T>
+Leaf<T>* searchLeaf(Leaf<T>*, T);
 
-void traversePreOrder(Leaf*);
-void traverseInOrder(Leaf*);
-void traversePostOrder(Leaf*);
+template <typename T>
+Leaf<T>* lesserLeaf(Leaf<T>*);
 
-void generateRandomArray(int*, int, int, int);
+template <typename T>
+Leaf<T>* deleteLeaf(Leaf<T>*, T);
+
+template <typename T>
+Leaf<T>* createTree(T*, int);
+
+template <typename T>
+void traversePreOrder(Leaf<T>*);
+
+template <typename T>
+void traverseInOrder(Leaf<T>*);
+
+template <typename T>
+void traversePostOrder(Leaf<T>*);
+
+template <typename T>
+void generateRandomArray(T*, int, int, int);
+
+template <typename T>
+struct Node {
+    T iPayload;
+    Node<T>* ptrNext;
+};
+
+template <typename T>
+Node<T>* createNode(T);
+
+template <typename T>
+void insertEnd(Node<T>**, T);
+
+#include "arvores.tpp"
 
 #endif

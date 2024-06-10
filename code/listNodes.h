@@ -8,8 +8,6 @@ struct Node {
     Node<T>* ptrPrev;
 };
 
-#include "listNodes.tpp"
-
 namespace basicNodeFuncs
 {
     template <typename T>
@@ -57,5 +55,7 @@ T* listToArray(Node<T>**, int);
 
 template <typename T>
 Node<T>* arrayToList(T*, int);
+
+#include "listNodes.tpp"
 
 #endif

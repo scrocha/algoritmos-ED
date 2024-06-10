@@ -1,9 +1,10 @@
-#include "bfsSearch.h"
+#include "arvores.h"
 
-Leaf* bfsSearch(Leaf* ptrRoot, int iValor)
+template <typename T>
+Leaf<T>* bfsSearch(Leaf<T>* ptrRoot, T iValor)
 {
-    Node<Leaf*>* ptrHead = createNode(ptrRoot);
-    Node<Leaf*>* ptrTemp = ptrHead;
+    Node<Leaf<T>*>* ptrHead = createNode(ptrRoot);
+    Node<Leaf<T>*>* ptrTemp = ptrHead;
 
     while (ptrTemp != nullptr && ptrTemp->iPayload->iPayload != iValor) {
         if (ptrTemp->iPayload->ptrLeft != nullptr) {

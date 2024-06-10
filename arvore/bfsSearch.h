@@ -1,11 +1,9 @@
 #ifndef BFSSEARCH_H
 #define BFSSEARCH_H
 
-#include "arvores.h"
-#include "../code/listNodes.h"
+template <typename T>
+Leaf<T>* bfsSearch(Leaf<T>*, T);
 
-using namespace basicNodeFuncs;
-
-Leaf* bfsSearch(Leaf*, int);
+#include "bfsSearch.tpp"
 
 #endif

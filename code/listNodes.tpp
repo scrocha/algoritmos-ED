@@ -7,7 +7,8 @@ namespace basicNodeFuncs
 {
     // Cria um novo nó com o payload especificado
     template <typename T>
-    Node<T>* createNode(T iPayload){
+    Node<T>* createNode(T iPayload)
+    {
         Node<T>* temp = (Node<T>*) malloc(sizeof(Node<T>));
         temp->iPayload = iPayload;
         temp->ptrNext = nullptr;
@@ -18,7 +19,8 @@ namespace basicNodeFuncs
 
     // Exibe os payloads dos nós da lista
     template <typename T>
-    void displayList(Node<T>* node){
+    void displayList(Node<T>* node)
+    {
         if(node == nullptr)
         {
             cout << "Lista Vazia: não é possível realizar displayList" << endl;
@@ -46,7 +48,8 @@ namespace basicNodeFuncs
 
     // Insere um novo nó no início da lista
     template <typename T>
-    void insertFront(Node<T>** head, T iPayload){
+    void insertFront(Node<T>** head, T iPayload)
+    {
         Node<T>* newNode = createNode(iPayload);
         
         if (*head != nullptr)
@@ -62,7 +65,8 @@ namespace basicNodeFuncs
 
     // Insere um novo nó no final da lista
     template <typename T>
-    void insertEnd(Node<T>** head, T iPayload){
+    void insertEnd(Node<T>** head, T iPayload)
+    {
         Node<T>* newNode = createNode(iPayload);
         
         if(*head == nullptr)
@@ -119,7 +123,8 @@ namespace basicNodeFuncs
 
     // Insere um novo nó antes do local especificado
     template <typename T>
-    void insertBefore(Node<T>* ptrLocation, T iPayload) {
+    void insertBefore(Node<T>* ptrLocation, T iPayload)
+    {
         if (ptrLocation == nullptr) {
             cout << "Location é NULL." << endl;
             return;

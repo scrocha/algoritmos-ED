@@ -1,8 +1,9 @@
 #ifndef DFSSEARCH_H
 #define DFSSEARCH_H
 
-#include "arvores.h"
+template <typename T>
+Leaf<T>* dfsSearch(Leaf<T>*, T);
 
-Leaf* dfsSearch(Leaf*, int);
+#include "dfsSearch.tpp"
 
 #endif

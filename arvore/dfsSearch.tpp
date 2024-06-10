@@ -1,11 +1,12 @@
-#include "dfsSearch.h"
+#include "arvores.h"
 
-Leaf* dfsSearch(Leaf* ptrRoot, int iVal)
+template <typename T>
+Leaf<T>* dfsSearch(Leaf<T>* ptrRoot, T iVal)
 {
     if (ptrRoot == nullptr || ptrRoot->iPayload == iVal)
         return ptrRoot;
 
-    Leaf* found = dfsSearch(ptrRoot->ptrLeft, iVal);
+    Leaf<T>* found = dfsSearch(ptrRoot->ptrLeft, iVal);
     if (found != nullptr) return found;
 
     return dfsSearch(ptrRoot->ptrRight, iVal);
