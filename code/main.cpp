@@ -18,7 +18,7 @@ using std::chrono::nanoseconds;
 
 namespace Tempo
 {
-    const int iNumeroIteracoes = 10;
+    const int iNumeroIteracoes = 100;
     const int iNumeroDeElementos = 10000;
 
     float tempoDeExecucao(Node<int>* head, int iMetodo, int iNumNode)
@@ -56,10 +56,16 @@ namespace Tempo
 }
 
 int main(){
-    cout << "BUBBLESORT,BUBBLESORT_OT,SELECTIONSORT,SELECTIONSORT_OT,INSERTIONSORT,RADIXSORT" << "\n";
+    cout << "TEMPO_CRIACAO,BUBBLESORT,BUBBLESORT_OT,SELECTIONSORT,SELECTIONSORT_OT,INSERTIONSORT,RADIXSORT" << "\n";
 
     for(int i = 1; i <= Tempo::iNumeroIteracoes; i++)
-    {
+    {   
+        auto timeStart = high_resolution_clock::now();
+        Node<int>* head = geradorFila<int>(Tempo::iNumeroDeElementos);
+        auto timeStop = high_resolution_clock::now();
+        auto timeDuration = duration_cast<nanoseconds>(timeStop - timeStart);
+        cout << timeDuration.count() << ",";
+
         cout << Tempo::tempoDeExecucao(geradorFila<int>(Tempo::iNumeroDeElementos), 1, Tempo::iNumeroDeElementos) << ",";
         cout << Tempo::tempoDeExecucao(geradorFila<int>(Tempo::iNumeroDeElementos), 2, Tempo::iNumeroDeElementos) << ",";
         cout << Tempo::tempoDeExecucao(geradorFila<int>(Tempo::iNumeroDeElementos), 3, Tempo::iNumeroDeElementos) << ",";
